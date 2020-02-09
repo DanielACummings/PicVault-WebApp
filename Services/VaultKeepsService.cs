@@ -13,15 +13,41 @@ namespace Keepr.Services
     {
       _repo = repo;
     }
+
     public IEnumerable<VaultKeep> Get()
     {
       return _repo.Get();
+    }
+
+    internal VaultKeep GetById(int id)
+    {
+      var exists = _repo.GetById(id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid ID");
+      }
+      return exists;
     }
 
     public VaultKeep Create(VaultKeep newVaultKeep)
     {
       newVaultKeep.Id = _repo.Create(newVaultKeep);
       return newVaultKeep;
+    }
+
+    internal VaultKeep Delete(string userId, int id)
+    {
+      var exists = _repo.GetById(id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid ID");
+      }
+      if (exists.UserId != userId)
+      {
+        throw new Exception("Only creators of an item can delete it");
+      }
+      _repo.Delete(id);
+      return "Successfully deleted";
     }
   }
 }

@@ -20,12 +20,12 @@ namespace Keepr.Services
 
     public Keep GetById(int id)
     {
-      var found = _repo.GetById(id);
-      if (found == null)
+      var exists = _repo.GetById(id);
+      if (exists == null)
       {
         throw new Exception("Invalid ID");
       }
-      return found;
+      return exists;
     }
 
     public Keep Create(Keep newData)

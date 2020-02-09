@@ -21,9 +21,28 @@ namespace Keepr.Repositories
       return _db.Query<Vault>(sql);
     }
 
-    internal int Create(Vault VaultData)
+
+    internal Vault GetById(int id)
     {
-      throw new NotImplementedException();
+      string sql = "SELECT * FROM vaults WHERE id = @id";
+      return _db.QueryFirstOrDefault<Vault>(sql, new { id });
+    }
+
+    internal Vault Create(Vault newData)
+    {
+      string sql = @"
+      INSERT INTO vaults (name, description, userId)
+      VALUES (@Name, @Description, @UserId);
+      SELECT LAST_INSER_ID;";
+      int id = _db.ExecuteScalar<int>(sql, newData);
+      newData.Id = id;
+      return newData;
+    }
+
+    internal void Delete(int id)
+    {
+      string sql = "DELETE FROM vaults WHERE id = @id";
+      _db.Execute(sql, new { id });
     }
   }
 }
