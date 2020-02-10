@@ -31,11 +31,11 @@ namespace Keepr.Services
 
     public VaultKeep Create(VaultKeep newVaultKeep)
     {
-      newVaultKeep.Id = _repo.Create(newVaultKeep);
+      _repo.Create(newVaultKeep);
       return newVaultKeep;
     }
 
-    internal VaultKeep Delete(string userId, int id)
+    internal string Delete(string userId, int id)
     {
       var exists = _repo.GetById(id);
       if (exists == null)
