@@ -30,12 +30,20 @@ namespace Keepr.Repositories
     internal Keep Create(Keep newData)
     {
       string sql = @"
-          INSERT INTO keeps (name, description, userId, img)
-          VALUES (@Name, @Description,@UserId, @Img);
+          INSERT INTO keeps (name, description, userId, img, isPrivate)
+          VALUES (@Name, @Description, @UserId, @Img, @IsPrivate);
           SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, newData);
       newData.Id = id;
       return newData;
+    }
+
+    internal void Edit(Keep update)
+    {
+      string sql = @"UPDATE keeps
+      SET id = @Id, userId = @UserId, name = @Name, description = @Description, img = @Img, isPrivate = @IsPrivate, views = @Views, shares = @Shares, keeps = @Keeps
+      WHERE id = @Id";
+      _db.Execute(sql, update);
     }
 
     internal void Delete(int id)

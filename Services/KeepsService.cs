@@ -30,11 +30,22 @@ namespace Keepr.Services
 
     public Keep Create(Keep newData)
     {
-      newData.Id = _repo.Create(newData);
+      _repo.Create(newData);
       return newData;
     }
 
-    internal Keep Delete(string userId, int id)
+    internal Keep Edit(Keep update)
+    {
+      var exists = _repo.GetById(update.Id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid ID");
+      }
+      _repo.Edit(update);
+      return update;
+    }
+
+    internal string Delete(string userId, int id)
     {
       var exists = _repo.GetById(id);
       if (exists == null)
@@ -48,5 +59,6 @@ namespace Keepr.Services
       _repo.Delete(id);
       return "Successfully deleted";
     }
+
   }
 }

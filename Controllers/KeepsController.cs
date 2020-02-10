@@ -65,7 +65,23 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpDelete]
+    [HttpPut("{id}")]
+    [Authorize]
+    public ActionResult<Keep> Edit([FromBody] Keep update)
+    {
+      try
+      {
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        return Ok(_ks.Edit(update));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpDelete("{id}")]
     [Authorize]
     public ActionResult<string> Delete(int id)
     {

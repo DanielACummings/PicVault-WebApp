@@ -27,7 +27,7 @@ namespace Keepr.Repositories
       return _db.QueryFirstOrDefault<VaultKeep>(sql, new { id });
     }
 
-    internal int Create(VaultKeep newData)
+    internal VaultKeep Create(VaultKeep newData)
     {
       string sql = @"INSERT INTO vaultKeeps (userId, keepId, vaultId)
       VALUES (@UserId, @KeepId, @VaultId);
