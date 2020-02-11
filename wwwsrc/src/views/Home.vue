@@ -6,77 +6,28 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-4 pb-3">
-				<!-- Insert keep components with v-for here. Placeholder cards below -->
-				<div class="card" style="width: 18rem;">
-					<img
-						src="https://insights.tradestation.com/wp-content/uploads/2017/12/Crypto-1024x1024.jpg"
-						class="card-img-top"
-						alt="image"
-					/>
-					<div class="card-body">
-						<h5 class="card-title">Pic Name</h5>
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-primary">Share</a>
-						<a href="#" class="btn btn-primary">Keep</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-4 pb-3">
-				<div class="card" style="width: 18rem;">
-					<img
-						src="https://insights.tradestation.com/wp-content/uploads/2017/12/Crypto-1024x1024.jpg"
-						class="card-img-top"
-						alt="image"
-					/>
-					<div class="card-body">
-						<h5 class="card-title">Pic Name</h5>
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-primary">Share</a>
-						<a href="#" class="btn btn-primary">Keep</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-4 pb-3">
-				<div class="card" style="width: 18rem;">
-					<img
-						src="https://insights.tradestation.com/wp-content/uploads/2017/12/Crypto-1024x1024.jpg"
-						class="card-img-top"
-						alt="image"
-					/>
-					<div class="card-body">
-						<h5 class="card-title">Pic Name</h5>
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-primary">Share</a>
-						<a href="#" class="btn btn-primary">Keep</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-4 pb-3">
-				<div class="card" style="width: 18rem;">
-					<img
-						src="https://insights.tradestation.com/wp-content/uploads/2017/12/Crypto-1024x1024.jpg"
-						class="card-img-top"
-						alt="image"
-					/>
-					<div class="card-body">
-						<h5 class="card-title">Pic Name</h5>
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-primary">Share</a>
-						<a href="#" class="btn btn-primary">Keep</a>
-					</div>
-				</div>
-			</div>
+			<!-- public keeps inserted here -->
+			<keepComponent v-for="keep in publicKeeps" :key="keep.id" :keepProp="keep" />
 		</div>
 	</div>
 </template>
 
 <script>
+import keepComponent from "@/components/KeepComp";
 export default {
 	name: "home",
+	mounted() {
+		this.$store.dispatch("getPublicKeeps");
+	},
+	components: {
+		keepComponent
+	},
 	computed: {
 		user() {
 			return this.$store.state.user;
+		},
+		publicKeeps() {
+			return this.$store.state.publicKeeps;
 		}
 	},
 	methods: {
