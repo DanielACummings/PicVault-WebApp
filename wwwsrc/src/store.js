@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 let baseUrl = location.host.includes("localhost") ? "https://localhost:5001/" : "/";
 
-let api = Axios.create({
+let _api = Axios.create({
   baseURL: baseUrl + "api/",
   timeout: 3000,
   withCredentials: true
@@ -18,13 +18,23 @@ export default new Vuex.Store({
     publicKeeps: []
   },
   mutations: {
+    setPublicKeeps(state, data) {
+      state.publicKeeps = data
+    }
   },
   actions: {
-    setBearer({}, bearer) {
-      api.defaults.headers.authorization = bearer;
+    // auth
+    setBearer({ }, bearer) {
+      _api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
-      api.defaults.headers.authorization = "";
+      _api.defaults.headers.authorization = "";
+    },
+
+    // keeps
+    async getPublicKeeps({ commit }) {
+      let res = await _api.get('keeps')
+      commit('setPublicKeeps', res.data)
     }
   }
 });
