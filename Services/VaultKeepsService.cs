@@ -8,36 +8,36 @@ namespace Keepr.Services
 {
   public class VaultKeepsService
   {
-    private readonly VaultKeepsRepository _repo;
-    public VaultKeepsService(VaultKeepsRepository repo)
+    private readonly VaultKeepsRepository _vkRepo;
+    private readonly
+    KeepsRepository _kRepo;
+
+    public VaultKeepsService(VaultKeepsRepository vkRepo, KeepsRepository kRepo)
     {
-      _repo = repo;
+      _vkRepo = vkRepo;
+      _kRepo = kRepo;
     }
 
-    public IEnumerable<VaultKeep> Get()
+    // passes to KeepsRepository
+    public IEnumerable<Keep> GetByVaultId(int vaultId, string userId)
     {
-      return _repo.Get();
-    }
-
-    internal VaultKeep GetById(int id)
-    {
-      var exists = _repo.GetById(id);
+      var exists = _kRepo.GetByVaultId(vaultId, userId);
       if (exists == null)
       {
-        throw new Exception("Invalid ID");
+        throw new Exception("Invalid ID");
       }
       return exists;
     }
 
     public VaultKeep Create(VaultKeep newVaultKeep)
     {
-      _repo.Create(newVaultKeep);
+      _vkRepo.Create(newVaultKeep);
       return newVaultKeep;
     }
 
-    internal string Delete(string userId, int id)
+    internal string Delete(int vaultId, int keepId, string userId)
     {
-      var exists = _repo.GetById(id);
+      var exists = _vkRepo.GetByIds(vaultId, keepId);
       if (exists == null)
       {
         throw new Exception("Invalid ID");
@@ -46,7 +46,7 @@ namespace Keepr.Services
       {
         throw new Exception("Only creators of an item can delete it");
       }
-      _repo.Delete(id);
+      _vkRepo.Delete(vaultId, keepId);
       return "Successfully deleted";
     }
   }
