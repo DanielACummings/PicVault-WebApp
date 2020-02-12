@@ -18,6 +18,11 @@ namespace Keepr.Services
       return _repo.Get();
     }
 
+    public IEnumerable<Keep> GetCreated(string userId)
+    {
+      return _repo.GetCreated(userId);
+    }
+
     public Keep GetById(int id, string userId)
     {
       var exists = _repo.GetById(id);
