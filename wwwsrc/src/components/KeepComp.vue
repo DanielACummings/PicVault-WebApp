@@ -1,24 +1,22 @@
 <template>
 	<div class="keep-comp col-4 pb-3">
 		<div class="card" style="width: 18rem;">
-			<img
-				src="https://insights.tradestation.com/wp-content/uploads/2017/12/Crypto-1024x1024.jpg"
-				class="card-img-top"
-				alt="image"
-			/>
+			<img :src="keepProp.img" class="card-img-top" alt="image" />
 			<div class="card-body">
 				<h5 class="card-title">{{keepProp.name}}</h5>
 				<div class="row">
 					<div class="col-12">
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-primary">Share</a>
-						<a href="#" class="btn btn-primary">Keep</a>
+						<button type="submit" class="btn btn-primary">View</button>
+						<button type="submit" class="btn btn-primary">Share</button>
+						<button type="submit" class="btn btn-primary">Keep</button>
+						<button type="submit" class="btn btn-warning">Remove</button>
+						<button @click="deleteKeep" type="delete" class="btn btn-danger">Delete</button>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-12">
-						Views: {{keepProp.views}}
-						Shares: {{keepProp.shares}}
+						Views: {{keepProp.views}} -
+						Shares: {{keepProp.shares}} -
 						Keeps: {{keepProp.keeps}}
 					</div>
 				</div>
@@ -32,9 +30,18 @@ export default {
 	name: "keepComponent",
 	props: ["keepProp"],
 	data() {
-		return {};
+		return {
+			keepId: this.keepProp.id
+		};
 	},
-	methods: {}
+	methods: {
+		deleteKeep(id) {
+			let close = confirm("Delete forever?");
+			if (close == true) {
+				this.$store.dispatch("deleteKeep", this.keepProp.id);
+			}
+		}
+	}
 };
 </script>
 
