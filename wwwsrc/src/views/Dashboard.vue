@@ -1,11 +1,11 @@
 <template>
 	<div class="dashboard container">
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12">
 				<h1>Your Vaults and Created Pics</h1>
 				<!-- vault count {{ vaultCount }} Pics {{ picCount }} -->
 			</div>
-			<div class="col-12">
+			<div class="col-6">
 				<h5>Create a Pic</h5>
 				<form @submit.prevent="createKeep">
 					<input type="text" v-model="newKeep.name" required placeholder="Pic name" />
@@ -17,78 +17,45 @@
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
+			<div class="col-6">
+				<h5>Create a Vault</h5>
+				<form @submit.prevent="createVault">
+					<input type="text" v-model="newVault.name" required placeholder="Vault name" />
+					<input type="text" v-model="newVault.description" required placeholder="Description" />
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
 		</div>
 		<div class="row">
 			<!-- insert vault components with v-for here. Placeholder vaults below -->
-			<div class="col-4 pb-3">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Vault Name</h5>
-						<p
-							class="card-text"
-						>Vault description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rem cumque tempore.</p>
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-danger">Delete</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-4 pb-3">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Vault Name</h5>
-						<p
-							class="card-text"
-						>Vault description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rem cumque tempore.</p>
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-danger">Delete</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-4 pb-3">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Vault Name</h5>
-						<p
-							class="card-text"
-						>Vault description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rem cumque tempore.</p>
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-danger">Delete</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-4 pb-3">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Vault Name</h5>
-						<p
-							class="card-text"
-						>Vault description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rem cumque tempore.</p>
-						<a href="#" class="btn btn-primary">View</a>
-						<a href="#" class="btn btn-danger">Delete</a>
-					</div>
-				</div>
-			</div>
+			<vaultComponent v-for="vault in vaults" :key="vault.id" :vaultProp="vault" />
 		</div>
 		<div class="row">
 			<!-- Insert keep components with v-for here. Placeholder cards below -->
-			<keepComponent v-for="keep in privateKeeps" :key="keep.id" :keepProp="keep" />
+			<keepComponent v-for="keep in createdKeeps" :key="keep.id" :keepProp="keep" />
 		</div>
 	</div>
 </template>
 
 <script>
+import vaultComponent from "@/components/VaultComp";
 import keepComponent from "@/components/KeepComp";
 export default {
 	name: "dashboard",
 	mounted() {
 		this.$store.dispatch("getCreatedKeeps");
+		this.$store.dispatch("getVaults");
 	},
 	components: {
-		keepComponent
+		keepComponent,
+		vaultComponent
 	},
 	computed: {
-		privateKeeps() {
-			return this.$store.state.privateKeeps;
+		createdKeeps() {
+			return this.$store.state.createdKeeps;
+		},
+		vaults() {
+			return this.$store.state.vaults;
 		}
 	},
 	data() {
@@ -98,6 +65,10 @@ export default {
 				description: "",
 				img: "",
 				isPrivate: false
+			},
+			newVault: {
+				name: "",
+				description: ""
 			}
 		};
 	},
@@ -110,6 +81,14 @@ export default {
 				description: "",
 				img: "",
 				isPrivate: false
+			};
+		},
+		createVault() {
+			let vaultData = { ...this.newVault };
+			this.$store.dispatch("createVault", vaultData);
+			this.newVault = {
+				name: "",
+				description: ""
 			};
 		}
 	}
