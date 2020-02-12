@@ -35,7 +35,7 @@ namespace Keepr.Controllers
       };
     }
 
-    [HttpGet("private")]
+    [HttpGet("created")]
     [Authorize]
     public ActionResult<IEnumerable<Keep>> GetCreated()
     {
