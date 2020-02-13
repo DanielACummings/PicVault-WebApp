@@ -3,7 +3,6 @@
 		<div class="row">
 			<div class="col-12">
 				<h1>Your Vaults and Created Pics</h1>
-				<!-- vault count {{ vaultCount }} Pics {{ picCount }} -->
 			</div>
 			<div class="col-6">
 				<h5>Create a Pic</h5>

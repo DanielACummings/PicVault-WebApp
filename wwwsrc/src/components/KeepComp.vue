@@ -19,7 +19,7 @@
 								</div>
 							</ul>
 						</div>
-						<button type="submit" class="btn btn-warning">Remove</button>
+						<button @click="deleteVaultKeep" class="btn btn-warning">Remove</button>
 						<button @click="deleteKeep" type="delete" class="btn btn-danger">Delete</button>
 					</div>
 				</div>
@@ -39,11 +39,11 @@
 export default {
 	name: "keepComponent",
 	props: ["keepProp"],
-	data() {
-		return {
-			keepId: this.keepProp.id
-		};
-	},
+	// data() {
+	// 	return {
+	// 		keepId: this.keepProp.id,
+	// 	};
+	// },
 	computed: {
 		vaults() {
 			return this.$store.state.vaults;
@@ -57,7 +57,17 @@ export default {
 			};
 			this.$store.dispatch("createVaultKeep", addData);
 		},
-		deleteKeep(id) {
+		deleteVaultKeep() {
+			let close = confirm("Remove from vault?");
+			if (close == true) {
+				let deleteData = {
+					vaultId: this.$route.params.id,
+					keepId: this.keepProp.id
+				};
+				this.$store.dispatch("deleteVaultKeep", deleteData);
+			}
+		},
+		deleteKeep() {
 			let close = confirm("Delete forever?");
 			if (close == true) {
 				this.$store.dispatch("deleteKeep", this.keepProp.id);
