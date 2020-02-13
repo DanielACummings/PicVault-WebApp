@@ -15,16 +15,34 @@ let _api = Axios.create({
 
 export default new Vuex.Store({
   state: {
+    // vaults
+    activeVault: {},
+    vaults: [],
+
+    //keeps
+    activeKeep: {},
+    keepsInVault: [],
     publicKeeps: [],
-    createdKeeps: [],
-    vaults: []
+    createdKeeps: []
   },
   mutations: {
+    // keeps
+    addKeepToVault(state, data) {
+      state.keepsInVault.push(data)
+    },
+    setKeepsInVault(state, data) {
+      state.keepsInVault = data
+    },
     setPublicKeeps(state, data) {
       state.publicKeeps = data
     },
     setCreatedKeeps(state, data) {
       state.createdKeeps = data
+    },
+
+    // vaults
+    setActiveVault(state, data) {
+      state.activeVault = data
     },
     setVaults(state, data) {
       state.vaults = data
@@ -39,7 +57,17 @@ export default new Vuex.Store({
       _api.defaults.headers.authorization = "";
     },
 
-    // vaults
+    // vaultKeeps
+    async createVaultKeep({ commit }, addData) {
+      let res = await _api.post('vaultkeeps', addData)
+      commit('addKeepToVault', res.data)
+    },
+
+    // #region - vaults
+    async getActiveVault({ commit }, vaultId) {
+      let res = await _api.get('vaults/' + vaultId)
+      commit('setActiveVault', res.data)
+    },
     async getVaults({ commit }) {
       let res = await _api.get('vaults')
       commit('setVaults', res.data)
@@ -52,8 +80,9 @@ export default new Vuex.Store({
       await _api.delete('vaults/' + id)
       dispatch('getVaults')
     },
+    // #endregion
 
-    // keeps
+    // #region keeps
     async getPublicKeeps({ commit }) {
       let res = await _api.get('keeps')
       commit('setPublicKeeps', res.data)
@@ -61,6 +90,10 @@ export default new Vuex.Store({
     async getCreatedKeeps({ commit }) {
       let res = await _api.get('keeps/created')
       commit('setCreatedKeeps', res.data)
+    },
+    async getKeepsInVault({ commit }, vaultId) {
+      let res = await _api.get('vaultkeeps/' + vaultId + '/keeps')
+      commit('setKeepsInVault', res.data)
     },
     async createKeep({ dispatch }, keepData) {
       await _api.post('keeps', keepData)
@@ -71,5 +104,6 @@ export default new Vuex.Store({
       dispatch('getCreatedKeeps')
       dispatch('getPublicKeeps')
     }
+    // #endregion
   }
 });

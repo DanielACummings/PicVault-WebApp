@@ -15,6 +15,15 @@ namespace Keepr.Repositories
       _db = db;
     }
 
+    // for getting Keeps by vaultId - called from  VaultKeepsService
+    internal IEnumerable<Keep> GetByVaultId(int vaultId, string userId)
+    {
+      string sql = @"SELECT k.* FROM vaultkeeps vk
+      INNER JOIN keeps k ON k.id = vk.keepId
+      WHERE(vaultId = @vaultId AND vk.userId = @userId)";
+      return _db.Query<Keep>(sql, new { vaultId, userId });
+    }
+
     internal IEnumerable<Keep> Get()
     {
       string sql = "SELECT * FROM Keeps WHERE isPrivate = 0;";
@@ -56,15 +65,6 @@ namespace Keepr.Repositories
     {
       string sql = "DELETE FROM keeps WHERE id = @id";
       _db.Execute(sql, new { id });
-    }
-
-    // for getting Keeps by vaultId - called from  VaultKeepsService
-    internal IEnumerable<Keep> GetByVaultId(int vaultId, string userId)
-    {
-      string sql = @"SELECT k.* FROM vaultkeeps vk
-      INNER JOIN keeps k ON k.id = vk.keepId
-      WHERE(vaultId = @vaultId AND vk.userId = @userId)";
-      return _db.Query<Keep>(sql, new { vaultId, userId });
     }
   }
 }
