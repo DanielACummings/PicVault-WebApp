@@ -8,7 +8,17 @@
 					<div class="col-12">
 						<button type="submit" class="btn btn-primary">View</button>
 						<button type="submit" class="btn btn-primary">Share</button>
-						<button type="submit" class="btn btn-primary">Keep</button>
+						<div class="dropdown">
+							<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+								Keep
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<div v-for="vault in vaults" :key="vault.id">
+									<button class="dropdown-item" @click="createVaultKeep(vault.id)">{{vault.name}}</button>
+								</div>
+							</ul>
+						</div>
 						<button type="submit" class="btn btn-warning">Remove</button>
 						<button @click="deleteKeep" type="delete" class="btn btn-danger">Delete</button>
 					</div>
@@ -34,7 +44,19 @@ export default {
 			keepId: this.keepProp.id
 		};
 	},
+	computed: {
+		vaults() {
+			return this.$store.state.vaults;
+		}
+	},
 	methods: {
+		createVaultKeep(vaultId) {
+			let addData = {
+				vaultId: vaultId,
+				keepId: this.keepProp.id
+			};
+			this.$store.dispatch("createVaultKeep", addData);
+		},
 		deleteKeep(id) {
 			let close = confirm("Delete forever?");
 			if (close == true) {

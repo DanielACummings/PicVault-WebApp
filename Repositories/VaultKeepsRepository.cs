@@ -15,12 +15,6 @@ namespace Keepr.Repositories
       _db = db;
     }
 
-    // internal IEnumerable<VaultKeep> Get()
-    // {
-    //   string sql = "SELECT * FROM VaultKeeps WHERE isPrivate = 0;";
-    //   return _db.Query<VaultKeep>(sql);
-    // }
-
     internal VaultKeep GetByIds(int vaultId, int keepId)
     {
       string sql = "SELECT * FROM vaultKeeps WHERE vaultId = @vaultId AND keepId = @keepId";
