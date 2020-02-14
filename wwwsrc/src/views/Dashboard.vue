@@ -41,7 +41,7 @@ import vaultComponent from "@/components/VaultComp";
 import keepComponent from "@/components/KeepComp";
 export default {
 	name: "dashboard",
-	mounted() {
+	beforeMount() {
 		this.$store.dispatch("getCreatedKeeps");
 		this.$store.dispatch("getVaults");
 	},
