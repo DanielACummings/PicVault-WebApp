@@ -45,9 +45,8 @@ export default {
 	methods: {
 		async login() {
 			await this.$auth.loginWithPopup();
+			await this.$auth.getUserData();
 			this.$store.dispatch("setBearer", this.$auth.bearer);
-			console.log("this.$auth.user: ");
-			console.log(this.$auth.user);
 		},
 		async logout() {
 			await this.$auth.logout();
