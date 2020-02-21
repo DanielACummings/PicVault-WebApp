@@ -55,4 +55,6 @@
 -- DROP TABLE IF EXISTS users;
 
 -- to wipe data from a table
--- DELETE FROM tableName
+-- DELETE FROM vaults
+-- DELETE FROM keeps;
+-- DELETE FROM vaultkeeps
