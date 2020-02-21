@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
 		<router-link class="navbar-brand" :to="{ name: 'home' }">Pic Vault</router-link>
 		<button
 			class="navbar-toggler"
