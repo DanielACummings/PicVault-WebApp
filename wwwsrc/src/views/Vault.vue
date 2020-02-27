@@ -1,9 +1,17 @@
 <template>
 	<div class="vault container">
 		<div class="row">
+			<div class="col-12 text-right mt-4">
+				<h5>Edit</h5>
+				<form @submit.prevent="editVault">
+					<input type="text" v-model="vaultData.name" placeholder="New Name" />
+					<input type="text" v-model="vaultData.description" placeholder="New Description" />
+					<button class="btn btn-warning" type="submit">Submit</button>
+				</form>
+			</div>
 			<div class="col-12">
-				<h1>{{activeVault.name}}</h1>
-				<h5>{{activeVault.description}}</h5>
+				<h1 class="pt-3">{{activeVault.name}}</h1>
+				<h5 class="pb-5">{{activeVault.description}}</h5>
 			</div>
 		</div>
 		<div class="row">
@@ -22,6 +30,26 @@ export default {
 	},
 	components: {
 		keepComponent
+	},
+	data() {
+		return {
+			vaultData: {
+				name: "",
+				description: "",
+				id: this.$route.params.id
+			}
+		};
+	},
+	methods: {
+		editVault() {
+			let editData = { ...this.vaultData };
+			this.$store.dispatch("editVault", editData);
+			this.vaultData = {
+				name: "",
+				description: "",
+				id: this.$route.params.id
+			};
+		}
 	},
 	computed: {
 		activeVault() {

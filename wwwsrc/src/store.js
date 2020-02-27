@@ -9,7 +9,7 @@ let baseUrl = location.host.includes("localhost") ? "https://localhost:5001/" : 
 
 let _api = Axios.create({
   baseURL: baseUrl + "api/",
-  timeout: 3000,
+  timeout: 5000,
   withCredentials: true
 });
 
@@ -79,6 +79,11 @@ export default new Vuex.Store({
     async createVault({ dispatch }, vaultData) {
       await _api.post('vaults', vaultData)
       dispatch('getVaults')
+    },
+    async editVault({ dispatch }, vaultData) {
+      console.log(vaultData);
+      await _api.put('vaults/' + vaultData.id, vaultData)
+      dispatch("getActiveVault", vaultData.id)
     },
     async deleteVault({ dispatch }, id) {
       await _api.delete('vaults/' + id)

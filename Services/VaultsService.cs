@@ -35,6 +35,17 @@ namespace Keepr.Services
       return newVault;
     }
 
+    internal Vault Edit(Vault update)
+    {
+      var exists = _repo.GetById(update.Id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid ID");
+      }
+      _repo.Edit(update);
+      return update;
+    }
+
     internal string Delete(string userId, int id)
     {
       {
@@ -51,5 +62,6 @@ namespace Keepr.Services
         return "Successfully deleted";
       }
     }
+
   }
 }
