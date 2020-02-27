@@ -38,13 +38,14 @@ namespace Keepr.Repositories
       return newData;
     }
 
-    internal void Edit(Vault update)
+    internal Vault Edit(Vault update)
     // userId = @UserId,
     {
       string sql = @"UPDATE vaults
       SET id = @Id, name = @Name, description = @Description
       WHERE id = @Id";
       _db.Execute(sql, update);
+      return update;
     }
 
     internal void Delete(int id)

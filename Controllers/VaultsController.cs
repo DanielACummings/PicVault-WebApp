@@ -64,7 +64,7 @@ namespace Keepr.Controllers
     }
 
     [HttpPut("{id}")]
-    public ActionResult<Vault> Put([FromBody] Vault update)
+    public ActionResult<Vault> Put([FromBody] Vault update, int id)
     {
       try
       {
