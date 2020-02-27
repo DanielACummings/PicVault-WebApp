@@ -21,7 +21,6 @@ namespace Keepr.Repositories
       return _db.Query<Vault>(sql, new { userId });
     }
 
-
     internal Vault GetById(int id)
     {
       string sql = "SELECT * FROM vaults WHERE id = @id";
@@ -37,6 +36,15 @@ namespace Keepr.Repositories
       int id = _db.ExecuteScalar<int>(sql, newData);
       newData.Id = id;
       return newData;
+    }
+
+    internal void Edit(Vault update)
+    // userId = @UserId,
+    {
+      string sql = @"UPDATE vaults
+      SET id = @Id, name = @Name, description = @Description
+      WHERE id = @Id";
+      _db.Execute(sql, update);
     }
 
     internal void Delete(int id)

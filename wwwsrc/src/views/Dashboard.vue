@@ -7,8 +7,8 @@
 			<div class="col-6">
 				<h5>Create a Pic</h5>
 				<form @submit.prevent="createKeep">
-					<input type="text" v-model="newKeep.name" required placeholder="Pic name" />
-					<input type="text" v-model="newKeep.description" required placeholder="Description" />
+					<input type="text" v-model="newKeep.name" placeholder="Pic name" />
+					<input type="text" v-model="newKeep.description" placeholder="Description" />
 					<input type="text" v-model="newKeep.img" required placeholder="Image URL (web address)" />
 					<label>
 						<input type="checkbox" id="checkbox" v-model="newKeep.isPrivate" />Make private?
@@ -20,7 +20,7 @@
 				<h5>Create a Vault</h5>
 				<form @submit.prevent="createVault">
 					<input type="text" v-model="newVault.name" required placeholder="Vault name" />
-					<input type="text" v-model="newVault.description" required placeholder="Description" />
+					<input type="text" v-model="newVault.description" placeholder="Description" />
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
