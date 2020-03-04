@@ -2,7 +2,7 @@
 	<div class="home container">
 		<div class="row">
 			<div class="col">
-				<h1>Public Keeps</h1>
+				<h1 class="pb-5 pt-4">Public Keeps</h1>
 			</div>
 		</div>
 		<div class="row">
