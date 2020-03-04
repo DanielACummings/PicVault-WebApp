@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using Keepr.Models;
@@ -53,12 +52,13 @@ namespace Keepr.Repositories
       return newData;
     }
 
-    internal void Edit(Keep update)
+    internal Keep Edit(Keep update)
     {
       string sql = @"UPDATE keeps
       SET id = @Id, userId = @UserId, name = @Name, description = @Description, img = @Img, isPrivate = @IsPrivate, views = @Views, shares = @Shares, keeps = @Keeps
       WHERE id = @Id";
       _db.Execute(sql, update);
+      return update;
     }
 
     internal void Delete(int id)
