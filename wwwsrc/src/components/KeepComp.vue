@@ -4,9 +4,12 @@
 			<img :src="keepProp.img" class="card-img-top" alt="image" />
 			<div class="card-body">
 				<h5 class="card-title">{{keepProp.name}}</h5>
+				<p>{{keepProp.description}}</p>
 				<div class="row">
 					<div class="col-12">
-						<button type="submit" class="btn btn-primary">View</button>
+						<router-link :to="{name: 'keep', params: {id: keepProp.id}}">
+							<button class="btn btn-primary">View</button>
+						</router-link>
 						<button type="submit" class="btn btn-primary">Share</button>
 						<div class="dropdown">
 							<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
@@ -39,11 +42,6 @@
 export default {
 	name: "keepComponent",
 	props: ["keepProp"],
-	// data() {
-	// 	return {
-	// 		keepId: this.keepProp.id,
-	// 	};
-	// },
 	computed: {
 		vaults() {
 			return this.$store.state.vaults;
