@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using Keepr.Models;
@@ -39,7 +38,6 @@ namespace Keepr.Repositories
     }
 
     internal Vault Edit(Vault update)
-    // userId = @UserId,
     {
       string sql = @"UPDATE vaults
       SET id = @Id, name = @Name, description = @Description
