@@ -55,7 +55,7 @@ namespace Keepr.Repositories
     internal Keep Edit(Keep update)
     {
       string sql = @"UPDATE keeps
-      SET id = @Id, userId = @UserId, name = @Name, description = @Description, img = @Img, isPrivate = @IsPrivate, views = @Views, shares = @Shares, keeps = @Keeps
+      SET id = @Id, name = @Name, description = @Description, views = @Views, shares = @Shares, keeps = @Keeps
       WHERE id = @Id";
       _db.Execute(sql, update);
       return update;

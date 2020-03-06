@@ -3,8 +3,10 @@
 		<div class="card" style="width: 18rem;">
 			<img :src="keepProp.img" class="card-img-top" alt="image" />
 			<div class="card-body">
-				<h5 class="card-title">{{keepProp.name}}</h5>
-				<p>{{keepProp.description}}</p>
+				<router-link :to="{name: 'keep', params: {id: keepProp.id}}">
+					<h5 class="card-title">{{keepProp.name}}</h5>
+					<p>{{keepProp.description}}</p>
+				</router-link>
 				<div class="row">
 					<div class="col-12">
 						<router-link :to="{name: 'keep', params: {id: keepProp.id}}">
