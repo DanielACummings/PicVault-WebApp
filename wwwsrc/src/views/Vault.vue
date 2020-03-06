@@ -4,8 +4,8 @@
 			<div class="col-12 text-right mt-4">
 				<h5>Edit</h5>
 				<form @submit.prevent="editVault">
-					<input type="text" v-model="vaultData.name" placeholder="New Name" />
-					<input type="text" v-model="vaultData.description" placeholder="New Description" />
+					<input required type="text" v-model="vaultData.name" placeholder="New Name" />
+					<input required type="text" v-model="vaultData.description" placeholder="New Description" />
 					<button class="btn btn-warning" type="submit">Submit</button>
 				</form>
 			</div>
