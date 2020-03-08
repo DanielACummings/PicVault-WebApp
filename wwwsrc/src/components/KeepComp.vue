@@ -12,7 +12,6 @@
 						<router-link :to="{name: 'keep', params: {id: keepProp.id}}">
 							<button class="btn btn-primary">View</button>
 						</router-link>
-						<button type="submit" class="btn btn-primary">Share</button>
 						<div class="dropdown">
 							<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
 								Keep
@@ -24,14 +23,22 @@
 								</div>
 							</ul>
 						</div>
-						<button @click="deleteVaultKeep" class="btn btn-warning">Remove</button>
-						<button @click="deleteKeep" type="delete" class="btn btn-danger">Delete</button>
+						<button
+							v-show="this.$route.name === 'vault'"
+							@click="deleteVaultKeep"
+							class="btn btn-warning"
+						>Remove</button>
+						<button
+							v-show="this.$route.name !== 'home'"
+							@click="deleteKeep"
+							type="delete"
+							class="btn btn-danger"
+						>Delete</button>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-12">
 						Views: {{keepProp.views}} -
-						Shares: {{keepProp.shares}} -
 						Keeps: {{keepProp.keeps}}
 					</div>
 				</div>

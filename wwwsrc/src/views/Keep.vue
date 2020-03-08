@@ -2,7 +2,7 @@
 	<div class="keep container">
 		<div class="row">
 			<div class="col-12 text-right mt-4">
-				<h5>Edit</h5>
+				<h5>Edit Pic</h5>
 				<form @submit.prevent="editKeep">
 					<input required type="text" v-model="keepData.name" placeholder="New Name" />
 					<input required type="text" v-model="keepData.description" placeholder="New Description" />
@@ -37,7 +37,6 @@ export default {
 				description: "",
 				id: this.$route.params.id,
 				views: this.$store.state.activeKeep.views,
-				shares: this.$store.state.activeKeep.shares,
 				keeps: this.$store.state.activeKeep.keeps
 			}
 		};
@@ -51,7 +50,6 @@ export default {
 				description: "",
 				id: this.$route.params.id,
 				views: this.$store.state.activeKeep.views,
-				shares: this.$store.state.activeKeep.shares,
 				keeps: this.$store.state.activeKeep.keeps
 			};
 		}

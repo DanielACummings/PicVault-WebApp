@@ -2,7 +2,7 @@
 	<div class="vault container">
 		<div class="row">
 			<div class="col-12 text-right mt-4">
-				<h5>Edit</h5>
+				<h5>Edit Vault</h5>
 				<form @submit.prevent="editVault">
 					<input required type="text" v-model="vaultData.name" placeholder="New Name" />
 					<input required type="text" v-model="vaultData.description" placeholder="New Description" />
