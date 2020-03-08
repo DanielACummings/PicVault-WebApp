@@ -15,7 +15,6 @@
 --     img VARCHAR(255),
 --     isPrivate TINYINT,
 --     views INT DEFAULT 0,
---     shares INT DEFAULT 0,
 --     keeps INT DEFAULT 0,
 --     INDEX userId (userId),
 --     PRIMARY KEY (id)
