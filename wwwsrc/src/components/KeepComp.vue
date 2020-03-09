@@ -8,12 +8,19 @@
 					<p>{{keepProp.description}}</p>
 				</router-link>
 				<div class="row">
-					<div class="col-12">
+					<div class="col-3">
 						<router-link :to="{name: 'keep', params: {id: keepProp.id}}">
-							<button class="btn btn-primary">View</button>
+							<button class="btn btn-sm btn-primary">View</button>
 						</router-link>
+					</div>
+					<div class="col-3">
 						<div class="dropdown">
-							<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+							<button
+								v-if="this.$route.name !== 'vault'"
+								class="btn btn-primary btn-sm dropdown-toggle"
+								type="button"
+								data-toggle="dropdown"
+							>
 								Keep
 								<span class="caret"></span>
 							</button>
@@ -23,24 +30,28 @@
 								</div>
 							</ul>
 						</div>
+					</div>
+					<div class="col-3">
 						<button
-							v-show="this.$route.name === 'vault'"
+							v-if="this.$route.name === 'vault'"
 							@click="deleteVaultKeep"
-							class="btn btn-warning"
+							class="btn btn-sm btn-warning"
 						>Remove</button>
+					</div>
+					<div class="col-3">
 						<button
-							v-show="this.$route.name !== 'home'"
+							v-if="this.$route.name !== 'home'"
 							@click="deleteKeep"
 							type="delete"
-							class="btn btn-danger"
+							class="btn btn-sm btn-danger"
 						>Delete</button>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-12">
-						Views: {{keepProp.views}} -
-						Keeps: {{keepProp.keeps}}
-					</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center">
+					Views: {{keepProp.views}} -
+					Keeps: {{keepProp.keeps}}
 				</div>
 			</div>
 		</div>
