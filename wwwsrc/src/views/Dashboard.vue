@@ -4,17 +4,57 @@
 			<div class="col-12">
 				<h1>Your Vaults and Created Pics</h1>
 			</div>
+			<!-- Create pic modal -->
 			<div class="col-6">
-				<h5>Create a Pic</h5>
-				<form @submit.prevent="createKeep">
-					<input type="text" v-model="newKeep.name" placeholder="Pic name" />
-					<input type="text" v-model="newKeep.description" placeholder="Description" />
-					<input type="text" v-model="newKeep.img" required placeholder="Image URL (web address)" />
-					<label>
-						<input type="checkbox" id="checkbox" v-model="newKeep.isPrivate" />Make private?
-					</label>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+				<button
+					type="button"
+					class="btn btn-primary"
+					data-toggle="modal"
+					data-target="#exampleModal"
+					data-whatever="@getbootstrap"
+				>Create Pic</button>
+
+				<div
+					class="modal fade"
+					id="exampleModal"
+					tabindex="-1"
+					role="dialog"
+					aria-labelledby="exampleModalLabel"
+					aria-hidden="true"
+				>
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">New Pic</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form @submit.prevent="createKeep">
+									<div class="form-group">
+										<label for="vault-name" class="col-form-label">Name:</label>
+										<input type="text" v-model="newKeep.name" class="form-control" id="vault-name" required />
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="col-form-label">Description:</label>
+										<input type="text" v-model="newKeep.description" class="form-control" id="message-text" />
+									</div>
+									<div class="form-group">
+										<label for="image" class="col-form-label">Image URL (Web Address):</label>
+										<input type="text" v-model="newKeep.img" class="form-control" id="image" required />
+									</div>
+									<div class="form-group">
+										<label for="is-private" class="col-form-label">Make Private?</label>
+										<input type="checkbox" v-model="newKeep.isPrivate" class="form-control" id="is-private" />
+									</div>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- Create vault modal -->
 			<div class="col-6">
@@ -61,7 +101,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row pt-3">
 			<!-- insert vault components with v-for here. Placeholder vaults below -->
 			<vaultComponent v-for="vault in vaults" :key="vault.id" :vaultProp="vault" />
 		</div>
