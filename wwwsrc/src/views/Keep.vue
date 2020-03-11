@@ -1,13 +1,47 @@
 <template>
 	<div class="keep container">
 		<div class="row">
-			<div class="col-12 text-right mt-4">
-				<h5>Edit Pic</h5>
-				<form @submit.prevent="editKeep">
-					<input required type="text" v-model="keepData.name" placeholder="New Name" />
-					<input required type="text" v-model="keepData.description" placeholder="New Description" />
-					<button class="btn btn-warning" type="submit">Submit</button>
-				</form>
+			<div class="col-12 mt-4">
+				<button
+					type="button"
+					class="btn btn-primary"
+					data-toggle="modal"
+					data-target="#exampleModal"
+					data-whatever="@getbootstrap"
+				>Edit Pic</button>
+				<div
+					class="modal fade"
+					id="exampleModal"
+					tabindex="-1"
+					role="dialog"
+					aria-labelledby="exampleModalLabel"
+					aria-hidden="true"
+				>
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Edit Pic</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form @submit.prevent="editKeep">
+									<div class="form-group">
+										<label for="pic-name" class="col-form-label">Name:</label>
+										<input v-model="keepData.name" required type="text" class="form-control" id="pic-name" />
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="col-form-label">Description:</label>
+										<input v-model="keepData.description" class="form-control" id="message-text" />
+									</div>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
