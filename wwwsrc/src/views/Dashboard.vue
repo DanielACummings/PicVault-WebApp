@@ -5,27 +5,27 @@
 				<h1>Your Vaults and Created Pics</h1>
 			</div>
 			<!-- Create pic modal -->
-			<div class="col-6">
+			<div class="col-2">
 				<button
 					type="button"
 					class="btn btn-primary"
 					data-toggle="modal"
-					data-target="#exampleModal"
+					data-target="#newPicModal"
 					data-whatever="@getbootstrap"
 				>Create Pic</button>
 
 				<div
 					class="modal fade"
-					id="exampleModal"
+					id="newPicModal"
 					tabindex="-1"
 					role="dialog"
-					aria-labelledby="exampleModalLabel"
+					aria-labelledby="newPicModalLabel"
 					aria-hidden="true"
 				>
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">New Pic</h5>
+								<h5 class="modal-title" id="newPicModalLabel">New Pic</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -57,27 +57,27 @@
 				</div>
 			</div>
 			<!-- Create vault modal -->
-			<div class="col-6">
+			<div class="col-2">
 				<button
 					type="button"
 					class="btn btn-primary"
 					data-toggle="modal"
-					data-target="#exampleModal"
+					data-target="#newVaultModal"
 					data-whatever="@getbootstrap"
 				>Create Vault</button>
 
 				<div
 					class="modal fade"
-					id="exampleModal"
+					id="newVaultModal"
 					tabindex="-1"
 					role="dialog"
-					aria-labelledby="exampleModalLabel"
+					aria-labelledby="newVaultModalLabel"
 					aria-hidden="true"
 				>
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">New Vault</h5>
+								<h5 class="modal-title" id="newVaultModalLabel">New Vault</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
