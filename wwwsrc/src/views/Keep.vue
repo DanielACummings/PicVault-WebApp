@@ -33,7 +33,13 @@
 									</div>
 									<div class="form-group">
 										<label for="message-text" class="col-form-label">Description:</label>
-										<input v-model="keepData.description" class="form-control" id="message-text" />
+										<input
+											v-model="keepData.description"
+											required
+											type="text"
+											class="form-control"
+											id="message-text"
+										/>
 									</div>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 									<button type="submit" class="btn btn-primary">Submit</button>
