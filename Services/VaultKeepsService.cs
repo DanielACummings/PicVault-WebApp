@@ -31,6 +31,11 @@ namespace Keepr.Services
 
     public VaultKeep Create(VaultKeep newVaultKeep)
     {
+      var exists = _vkRepo.GetByIds(newVaultKeep.VaultId, newVaultKeep.KeepId);
+      if (exists != null)
+      {
+        throw new Exception("Pic already in vault");
+      }
       _vkRepo.Create(newVaultKeep);
       return newVaultKeep;
     }
