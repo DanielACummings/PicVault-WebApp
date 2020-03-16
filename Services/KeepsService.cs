@@ -68,5 +68,9 @@ namespace Keepr.Services
       return "Successfully deleted";
     }
 
+    internal object EditKeepsCount(Keep countData)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

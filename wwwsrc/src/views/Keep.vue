@@ -75,9 +75,7 @@ export default {
 			keepData: {
 				name: "",
 				description: "",
-				id: this.$route.params.id,
-				views: this.$store.state.activeKeep.views,
-				keeps: this.$store.state.activeKeep.keeps
+				id: this.$route.params.id
 			}
 		};
 	},
@@ -88,9 +86,7 @@ export default {
 			this.keepData = {
 				name: "",
 				description: "",
-				id: this.$route.params.id,
-				views: this.$store.state.activeKeep.views,
-				keeps: this.$store.state.activeKeep.keeps
+				id: this.$route.params.id
 			};
 		}
 	},
