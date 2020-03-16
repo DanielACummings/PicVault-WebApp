@@ -26,7 +26,10 @@
 							</button>
 							<ul class="dropdown-menu">
 								<div v-for="vault in vaults" :key="vault.id">
-									<button class="dropdown-item" @click="createVaultKeep(vault.id)">{{vault.name}}</button>
+									<button
+										class="dropdown-item"
+										@click="createVaultKeep(vault.id); increaseCount();"
+									>{{vault.name}}</button>
 								</div>
 							</ul>
 						</div>
@@ -74,6 +77,13 @@ export default {
 				keepId: this.keepProp.id
 			};
 			this.$store.dispatch("createVaultKeep", addData);
+		},
+		increaseCount() {
+			let countData = {
+				keepId: this.keepProp.id,
+				view: this.$route.name
+			};
+			this.$store.dispatch("increaseCount", countData);
 		},
 		deleteVaultKeep() {
 			let close = confirm("Remove from vault?");
