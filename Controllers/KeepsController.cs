@@ -99,6 +99,19 @@ namespace Keepr.Controllers
       }
     }
 
+    [HttpPut("{id}/keepscount")]
+    public ActionResult<Keep> Put([FromBody] Keep countData)
+    {
+      try
+      {
+        return Ok(_ks.EditKeepsCount(countData));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpDelete("{id}")]
     [Authorize]
     public ActionResult<string> Delete(int id)

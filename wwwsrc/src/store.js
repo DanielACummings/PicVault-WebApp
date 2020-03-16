@@ -93,8 +93,8 @@ export default new Vuex.Store({
     // #endregion
 
     // #region keeps
-    async increaseCount({ dispatch }, countData) {
-      await _api.put('keeps/' + countData.keepId)
+    async increaseKeepsCount({ dispatch }, countData) {
+      await _api.put('keeps/' + countData.keepId + '/keepsCount')
       if (countData.view == 'vault') {
         dispatch('getKeepsInVault')
       } else if (countData.view == 'dashboard') {
