@@ -1,7 +1,7 @@
 <template>
 	<div class="keep container">
 		<div class="row">
-			<div class="col-12 mt-4">
+			<div v-if="$auth.isAuthenticated" class="col-12 mt-4">
 				<button
 					type="button"
 					class="btn btn-primary"

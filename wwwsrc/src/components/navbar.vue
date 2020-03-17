@@ -51,7 +51,9 @@ export default {
 		async logout() {
 			await this.$auth.logout();
 			this.$store.dispatch("resetBearer");
-			this.$router.push({ name: "home" });
+			// if (this.$route.name != "keep") {
+			// 	this.$router.push({ name: "home" });
+			// }
 		}
 	}
 };
