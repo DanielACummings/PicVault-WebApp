@@ -100,7 +100,7 @@ namespace Keepr.Controllers
     }
 
     [HttpPut("{id}/keepscount")]
-    public ActionResult<Keep> Put([FromBody] Keep id)
+    public ActionResult<Keep> Put(int id)
     {
       try
       {
