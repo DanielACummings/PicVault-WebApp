@@ -53,14 +53,15 @@ namespace Keepr.Services
       return update;
     }
 
-    internal int EditKeepsCount(int id)
+    internal string EditKeepsCount(int id)
     {
       var exists = _repo.GetById(id);
       if (exists == null)
       {
         throw new Exception("Invalid ID");
       }
-      return _repo.EditKeepsCount(id);
+      _repo.EditKeepsCount(id);
+      return "Successfully upped keeps count";
     }
 
     internal string Delete(string userId, int id)

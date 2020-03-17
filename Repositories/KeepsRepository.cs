@@ -62,13 +62,12 @@ namespace Keepr.Repositories
       return update;
     }
 
-    internal Keep EditKeepsCount(Keep id)
+    internal void EditKeepsCount(int id)
     {
       string sql = @"UPDATE keeps
       SET views = views + 1
-      WHERE id = @Id";
-      _db.Execute(sql, id);
-      return id;
+      WHERE id = @id";
+      _db.Execute(sql, new { id });
     }
 
     internal void Delete(int id)
