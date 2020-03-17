@@ -53,6 +53,16 @@ namespace Keepr.Services
       return update;
     }
 
+    internal int EditKeepsCount(int id)
+    {
+      var exists = _repo.GetById(id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid ID");
+      }
+      return _repo.EditKeepsCount(id);
+    }
+
     internal string Delete(string userId, int id)
     {
       var exists = _repo.GetById(id);
@@ -66,11 +76,6 @@ namespace Keepr.Services
       }
       _repo.Delete(id);
       return "Successfully deleted";
-    }
-
-    internal object EditKeepsCount(Keep countData)
-    {
-      throw new NotImplementedException();
     }
   }
 }

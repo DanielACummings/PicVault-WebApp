@@ -80,7 +80,7 @@ export default {
 		},
 		increaseKeepsCount() {
 			let countData = {
-				keepId: this.keepProp.id,
+				id: this.keepProp.id,
 				view: this.$route.name
 			};
 			this.$store.dispatch("increaseKeepsCount", countData);
