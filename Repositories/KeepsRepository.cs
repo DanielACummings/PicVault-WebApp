@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Data;
 using Keepr.Models;
 using Dapper;
+using System;
 
 namespace Keepr.Repositories
 {
@@ -59,6 +60,15 @@ namespace Keepr.Repositories
       WHERE id = @Id";
       _db.Execute(sql, update);
       return update;
+    }
+
+    internal Keep EditKeepsCount(Keep id)
+    {
+      string sql = @"UPDATE keeps
+      SET views = views + 1
+      WHERE id = @Id";
+      _db.Execute(sql, id);
+      return id;
     }
 
     internal void Delete(int id)
