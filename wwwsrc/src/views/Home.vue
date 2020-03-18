@@ -29,11 +29,6 @@ export default {
 		publicKeeps() {
 			return this.$store.state.publicKeeps;
 		}
-	},
-	methods: {
-		logout() {
-			this.$store.dispatch("logout");
-		}
 	}
 };
 </script>

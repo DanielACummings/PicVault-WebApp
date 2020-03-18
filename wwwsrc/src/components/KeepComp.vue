@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-3">
 						<router-link :to="{name: 'keep', params: {id: keepProp.id}}">
-							<button class="btn btn-sm btn-primary">View</button>
+							<button @click="increaseViewsCount()" class="btn btn-sm btn-primary">View</button>
 						</router-link>
 					</div>
 					<div class="col-3">
@@ -84,6 +84,13 @@ export default {
 				view: this.$route.name
 			};
 			this.$store.dispatch("increaseKeepsCount", countData);
+		},
+		increaseViewsCount() {
+			let countData = {
+				id: this.keepProp.id,
+				view: this.$route.name
+			};
+			this.$store.dispatch("increaseViewsCount", countData);
 		},
 		deleteVaultKeep() {
 			let close = confirm("Remove from vault?");

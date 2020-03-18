@@ -64,6 +64,17 @@ namespace Keepr.Services
       return "Successfully upped keeps count";
     }
 
+    internal string EditViewsCount(int id)
+    {
+      var exists = _repo.GetById(id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid ID");
+      }
+      _repo.EditViewsCount(id);
+      return "Successfully upped views count";
+    }
+
     internal string Delete(string userId, int id)
     {
       var exists = _repo.GetById(id);

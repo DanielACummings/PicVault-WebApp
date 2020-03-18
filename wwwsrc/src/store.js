@@ -104,6 +104,17 @@ export default new Vuex.Store({
         dispatch('getPublicKeeps')
       }
     },
+    async increaseViewsCount({ dispatch }, countData) {
+      let id = countData.id
+      await _api.put('keeps/' + id + '/viewscount')
+      if (countData.view == 'vault') {
+        dispatch('getKeepsInVault')
+      } else if (countData.view == 'dashboard') {
+        dispatch('getCreatedKeeps')
+      } else {
+        dispatch('getPublicKeeps')
+      }
+    },
     async getActiveKeep({ commit }, keepId) {
       let res = await _api.get('keeps/' + keepId)
       commit('setActiveKeep', res.data)
