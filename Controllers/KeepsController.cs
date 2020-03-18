@@ -112,6 +112,19 @@ namespace Keepr.Controllers
       }
     }
 
+    [HttpPut("{id}/viewscount")]
+    public ActionResult<Keep> Edit(int id)
+    {
+      try
+      {
+        return Ok(_ks.EditViewsCount(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpDelete("{id}")]
     [Authorize]
     public ActionResult<string> Delete(int id)

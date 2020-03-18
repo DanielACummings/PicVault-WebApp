@@ -65,6 +65,14 @@ namespace Keepr.Repositories
     internal void EditKeepsCount(int id)
     {
       string sql = @"UPDATE keeps
+      SET keeps = keeps + 1
+      WHERE id = @id";
+      _db.Execute(sql, new { id });
+    }
+
+    internal void EditViewsCount(int id)
+    {
+      string sql = @"UPDATE keeps
       SET views = views + 1
       WHERE id = @id";
       _db.Execute(sql, new { id });
